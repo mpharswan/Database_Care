@@ -1,0 +1,35 @@
+
+SELECT projects.PROJECT_NAME, COUNT(*) AS Beneficiary_Count
+FROM beneficiary,projects
+WHERE projects.project_id= beneficiary.project	_ID
+GROUP BY projects.PROJECT_ID
+ORDER BY Beneficiary_Count DESC;
+
+
+
+SELECT SUM(Project_Reach) AS Total_Reach,programs.SPONSOR_ID
+FROM projects,programs
+WHERE programs.program_ID = projects.program_id
+AND programs.SPONSOR_ID=2;
+
+
+
+
+SELECT country.COUNTRY_NAME, COUNT(*) AS Project_Count
+FROM projects,country
+WHERE projects.PROGRAM_ID=country.PROGRAM_ID
+GROUP BY country.Country_ID
+ORDER BY Project_Count DESC;
+
+
+
+SELECT Country.COUNTRY_NAME, Research.RESEARCH_TOPIC
+FROM Country
+INNER JOIN Research ON Country.COUNTRY_ID = Research.COUNTRY_ID;
+
+
+
+
+SELECT Multimedia.Media
+FROM Multimedia
+WHERE PROGRAM_id IN (SELECT PROGRAM_id FROM Projects WHERE Project_Reach > 1000);
